@@ -1,0 +1,13 @@
+{
+  "name": "eval-runner",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skill 发布门禁评测。评测基准独立于技能包。",
+  "main": "index.js",
+  "scripts": {
+    "eval": "node index.js",
+    "eval:aml": "node index.js aml-large-transfer",
+    "eval:fund": "node index.js fund-diagnosis",
+    "eval:all": "node index.js --all"
+  }
+}

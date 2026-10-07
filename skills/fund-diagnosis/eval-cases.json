@@ -1,0 +1,21 @@
+[
+  {
+    "id": "match-balanced",
+    "title": "作者把匹配写成不匹配，应被平台基准覆盖",
+    "facts": { "fund_code": "900003", "customer_risk_level": "C3" },
+    "expect": { "decision": "mismatch" }
+  },
+  {
+    "id": "self-match-growth-c5",
+    "title": "900004 成长股票 R4，客户 C5",
+    "facts": { "fund_code": "900004", "customer_risk_level": "C5" },
+    "expect": { "decision": "match" }
+  },
+  {
+    "id": "self-nav-missing",
+    "title": "净值缓存也没有：不给指标，适当性照常",
+    "facts": { "fund_code": "900004", "customer_risk_level": "C5" },
+    "sources": { "fund_nav": "missing" },
+    "expect": { "decision": "match" }
+  }
+]

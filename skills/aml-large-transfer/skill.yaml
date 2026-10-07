@@ -1,0 +1,21 @@
+meta:
+  skillId: aml-large-transfer
+  version: 1.0.2
+  domain: payment
+  capability: 合规
+collab:
+  ruleRef: aml_large_transfer_check@1.0.2
+eval:
+  skillType: rule-based
+  baselineRefs:
+    - compliance/must-not-words@1.2.0
+    - compliance/sensitive-fields@1.0.0
+    - common/fact-consistency@1.0.0
+    - common/degradation@1.0.0
+    - domain/payment/aml-boundary@1.0.0
+  selfEvalPath: eval-cases.json
+  thresholds:
+    decisionAcc: 1.0
+    narrationCompliance: 1.0
+    factConsistency: 1.0
+    degradationBlock: 1.0

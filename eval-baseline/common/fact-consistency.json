@@ -1,0 +1,11 @@
+{
+  "baselineId": "common/fact-consistency",
+  "version": "1.0.0",
+  "effectiveFrom": "2026-10-01",
+  "rules": [
+    { "field": "amount", "source": "facts.payment_amount" },
+    { "field": "country", "source": "facts.counterparty_country" },
+    { "field": "risk_level", "source": "facts.customer_risk_level" }
+  ],
+  "description": "讲解中的金额/国家/风险等级必须与输入 facts 一致。没写到不算不一致；写了就不能和事实打架。降级拦截用例不要求复述金额。"
+}

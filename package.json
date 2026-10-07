@@ -1,0 +1,30 @@
+{
+  "name": "skill-eval",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skill 评测门禁：基准、执行器、结果归档和管理界面",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "eval": "node eval-runner/index.js --all",
+    "eval:aml": "node eval-runner/index.js aml-large-transfer",
+    "eval:fund": "node eval-runner/index.js fund-diagnosis"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.1",
+    "recharts": "^2.15.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.11"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "baselineId": "common/degradation",
+  "version": "1.0.0",
+  "effectiveFrom": "2026-10-01",
+  "rules": [
+    {
+      "condition": "cumulativeAvailable === false",
+      "expect": "decision === 'blocked'",
+      "mustNotNarrate": ["放行", "保证", "可以转账"]
+    }
+  ],
+  "description": "fail-closed 技能在关键事实不可用时必须拦住，讲解不得给出放行结论。基金诊断的降级口径在领域用例里，结果是 unknown，不是 blocked。"
+}

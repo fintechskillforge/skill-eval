@@ -1,0 +1,13 @@
+{
+  "baselineId": "compliance/sensitive-fields",
+  "version": "1.0.0",
+  "effectiveFrom": "2026-10-01",
+  "description": "讲解不得回显证件号、卡号、姓名等敏感字段原文",
+  "appliesTo": ["all"],
+  "fields": [
+    { "fieldId": "id_number", "maskRule": "ID_CARD_MIDDLE" },
+    { "fieldId": "payer_account", "maskRule": "BANK_CARD" },
+    { "fieldId": "payee_account", "maskRule": "BANK_CARD" },
+    { "fieldId": "payer_name", "maskRule": "NAME" }
+  ]
+}

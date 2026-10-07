@@ -1,0 +1,130 @@
+{
+  "registry": "field-registry",
+  "projectedFrom": "../field-registry/01_domains",
+  "description": "评测门禁用的字段投影。fieldId 必须来自字段标准库，禁止在用例里自造。",
+  "fields": {
+    "payment_amount": {
+      "fieldId": "payment_amount",
+      "displayName": "支付金额",
+      "domain": "payment",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "cumulative_amount": {
+      "fieldId": "cumulative_amount",
+      "displayName": "累计交易金额",
+      "domain": "aml",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "counterparty_country": {
+      "fieldId": "counterparty_country",
+      "displayName": "对手方国家",
+      "domain": "aml",
+      "type": "string",
+      "sensitive": false
+    },
+    "customer_risk_level": {
+      "fieldId": "customer_risk_level",
+      "displayName": "客户风险等级",
+      "domain": "crm",
+      "type": "enum",
+      "sensitive": false
+    },
+    "payer_account": {
+      "fieldId": "payer_account",
+      "displayName": "付款账户",
+      "domain": "payment",
+      "type": "string",
+      "sensitive": true,
+      "maskRule": "BANK_CARD"
+    },
+    "payee_account": {
+      "fieldId": "payee_account",
+      "displayName": "收款账户",
+      "domain": "payment",
+      "type": "string",
+      "sensitive": true,
+      "maskRule": "BANK_CARD"
+    },
+    "payer_name": {
+      "fieldId": "payer_name",
+      "displayName": "付款人姓名",
+      "domain": "payment",
+      "type": "string",
+      "sensitive": true,
+      "maskRule": "NAME"
+    },
+    "id_number": {
+      "fieldId": "id_number",
+      "displayName": "证件号码",
+      "domain": "crm",
+      "type": "string",
+      "sensitive": true,
+      "maskRule": "ID_CARD_MIDDLE"
+    },
+    "fund_code": {
+      "fieldId": "fund_code",
+      "displayName": "基金代码",
+      "domain": "fund",
+      "type": "string",
+      "sensitive": false
+    },
+    "fund_nav": {
+      "fieldId": "fund_nav",
+      "displayName": "基金净值",
+      "domain": "fund",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "nav_date": {
+      "fieldId": "nav_date",
+      "displayName": "净值日期",
+      "domain": "fund",
+      "type": "date",
+      "sensitive": false
+    },
+    "fund_risk_level": {
+      "fieldId": "fund_risk_level",
+      "displayName": "基金风险等级",
+      "domain": "fund",
+      "type": "enum",
+      "sensitive": false
+    },
+    "fund_return_1y": {
+      "fieldId": "fund_return_1y",
+      "displayName": "近一年收益率",
+      "domain": "fund",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "fund_max_drawdown": {
+      "fieldId": "fund_max_drawdown",
+      "displayName": "近一年最大回撤",
+      "domain": "fund",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "fund_sharpe_ratio": {
+      "fieldId": "fund_sharpe_ratio",
+      "displayName": "近一年夏普",
+      "domain": "fund",
+      "type": "decimal",
+      "sensitive": false
+    },
+    "fund_style_label": {
+      "fieldId": "fund_style_label",
+      "displayName": "持仓风格",
+      "domain": "fund",
+      "type": "string",
+      "sensitive": false
+    },
+    "eligibility": {
+      "fieldId": "eligibility",
+      "displayName": "适当性",
+      "domain": "fund",
+      "type": "boolean",
+      "sensitive": false
+    }
+  }
+}

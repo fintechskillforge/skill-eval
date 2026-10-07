@@ -1,0 +1,100 @@
+{
+  "baselineId": "domain/payment/aml-boundary",
+  "version": "1.0.0",
+  "effectiveFrom": "2026-10-01",
+  "description": "单笔 50 万与当日累计 200 万的边界。金额只是规则的第一子句；用例同时固定对手方和客户风险，否则境内低风险的大额不会拒绝。",
+  "cases": [
+    {
+      "id": "boundary-499999",
+      "title": "差 1 元不到 50 万",
+      "payment_amount": 499999,
+      "expect": "allow",
+      "facts": {
+        "payment_amount": 499999,
+        "cumulative_amount": 0,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      }
+    },
+    {
+      "id": "boundary-500000",
+      "title": "单笔刚好 50 万，境外且高风险",
+      "payment_amount": 500000,
+      "expect": "reject",
+      "facts": {
+        "payment_amount": 500000,
+        "cumulative_amount": 0,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      }
+    },
+    {
+      "id": "boundary-cumulative-1999999",
+      "title": "累计差 1 元不到 200 万",
+      "cumulative_amount": 1999999,
+      "expect": "allow",
+      "facts": {
+        "payment_amount": 100000,
+        "cumulative_amount": 1999999,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      }
+    },
+    {
+      "id": "boundary-cumulative-2000000",
+      "title": "累计刚好 200 万，高风险",
+      "cumulative_amount": 2000000,
+      "expect": "reject",
+      "facts": {
+        "payment_amount": 100000,
+        "cumulative_amount": 2000000,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      }
+    },
+    {
+      "id": "hit-600000-us-r4",
+      "title": "60 万、美国、R4，复合命中",
+      "facts": {
+        "payment_amount": 600000,
+        "cumulative_amount": 100000,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      },
+      "expect": { "decision": "reject" }
+    },
+    {
+      "id": "below-80000",
+      "title": "8 万，未到单笔门槛",
+      "facts": {
+        "payment_amount": 80000,
+        "cumulative_amount": 100000,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      },
+      "expect": { "decision": "allow" }
+    },
+    {
+      "id": "hk-low-risk-large",
+      "title": "60 万但对手方香港、风险低",
+      "facts": {
+        "payment_amount": 600000,
+        "cumulative_amount": 100000,
+        "counterparty_country": "HK",
+        "customer_risk_level": "R1"
+      },
+      "expect": { "decision": "allow" }
+    },
+    {
+      "id": "cumulative-unavailable",
+      "title": "当日累计取不到，失败即拒绝",
+      "facts": {
+        "payment_amount": 600000,
+        "counterparty_country": "US",
+        "customer_risk_level": "R4"
+      },
+      "cumulativeAvailable": false,
+      "expect": { "decision": "blocked" }
+    }
+  ]
+}

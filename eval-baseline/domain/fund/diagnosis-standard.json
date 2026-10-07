@@ -1,0 +1,60 @@
+{
+  "baselineId": "domain/fund/diagnosis-standard",
+  "version": "1.0.0",
+  "effectiveFrom": "2026-10-01",
+  "description": "基金诊断标准用例。适当性由规则 suitability_match 判定，讲解由 mock 模板生成。风险等级取不到是 unknown，不是反洗钱那种 blocked。",
+  "cases": [
+    {
+      "id": "match-balanced",
+      "title": "900003 平衡混合 R3，客户 C3",
+      "facts": { "fund_code": "900003", "customer_risk_level": "C3" },
+      "expect": { "decision": "match" }
+    },
+    {
+      "id": "mismatch-growth",
+      "title": "900004 成长股票 R4，客户 C3",
+      "facts": { "fund_code": "900004", "customer_risk_level": "C3" },
+      "expect": { "decision": "mismatch" }
+    },
+    {
+      "id": "boundary-c1-r2",
+      "title": "差一档：纯债 R2 对 C1",
+      "facts": { "fund_code": "900002", "customer_risk_level": "C1" },
+      "expect": { "decision": "mismatch" }
+    },
+    {
+      "id": "boundary-c5-r5",
+      "title": "最高档：QDII R5 对 C5",
+      "facts": { "fund_code": "900005", "customer_risk_level": "C5" },
+      "expect": { "decision": "match" }
+    },
+    {
+      "id": "nav-stale",
+      "title": "净值用缓存，适当性照常",
+      "facts": { "fund_code": "900003", "customer_risk_level": "C3" },
+      "sources": { "fund_nav": "stale" },
+      "expect": { "decision": "match" }
+    },
+    {
+      "id": "risk-missing",
+      "title": "基金风险等级缓存也没有",
+      "facts": { "fund_code": "900004", "customer_risk_level": "C3" },
+      "sources": { "fund_risk_level": "missing" },
+      "degradation": true,
+      "expect": { "decision": "unknown" }
+    },
+    {
+      "id": "unknown-fund",
+      "title": "基金代码查不到",
+      "facts": { "fund_code": "999999", "customer_risk_level": "C3" },
+      "degradation": true,
+      "expect": { "decision": "unknown" }
+    },
+    {
+      "id": "input-missing",
+      "title": "没传客户风险等级",
+      "facts": { "fund_code": "900003" },
+      "expect": { "decision": null }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "baselineId": "compliance/must-not-words",
+  "version": "1.2.0",
+  "effectiveFrom": "2026-10-01",
+  "words": ["保证", "一定通过", "可以转账", "已放行", "稳赚", "保本", "推荐买入"],
+  "appliesTo": ["all"],
+  "description": "所有金融 Skill 的讲解文本不得出现这些词"
+}

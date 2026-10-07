@@ -1,0 +1,35 @@
+[
+  {
+    "id": "boundary-499999",
+    "title": "作者把差 1 元写成拒绝，应被平台基准覆盖",
+    "facts": {
+      "payment_amount": 499999,
+      "cumulative_amount": 0,
+      "counterparty_country": "US",
+      "customer_risk_level": "R4"
+    },
+    "expect": { "decision": "reject" }
+  },
+  {
+    "id": "self-domestic-large-low-risk",
+    "title": "60 万，境内且风险低，金额单独不够拒绝",
+    "facts": {
+      "payment_amount": 600000,
+      "cumulative_amount": 100000,
+      "counterparty_country": "CN",
+      "customer_risk_level": "R1"
+    },
+    "expect": { "decision": "allow" }
+  },
+  {
+    "id": "self-domestic-cumulative-high-risk",
+    "title": "单笔未到 50 万，累计到 200 万且高风险",
+    "facts": {
+      "payment_amount": 100000,
+      "cumulative_amount": 2000000,
+      "counterparty_country": "CN",
+      "customer_risk_level": "R4"
+    },
+    "expect": { "decision": "reject" }
+  }
+]
