@@ -3,6 +3,20 @@
   "projectedFrom": "../field-registry/01_domains",
   "description": "评测门禁用的字段投影。fieldId 必须来自字段标准库，禁止在用例里自造。",
   "fields": {
+    "customer_id": {
+      "fieldId": "customer_id",
+      "displayName": "客户ID",
+      "domain": "crm",
+      "type": "string",
+      "sensitive": false
+    },
+    "trade_date": {
+      "fieldId": "trade_date",
+      "displayName": "交易日期",
+      "domain": "market",
+      "type": "date",
+      "sensitive": false
+    },
     "payment_amount": {
       "fieldId": "payment_amount",
       "displayName": "支付金额",

@@ -32,7 +32,8 @@ async function execute(skillId, input = {}) {
     delete facts.cumulative_amount;
     sources.cumulative_amount = "missing";
   }
-  const actual = await decide(loaded, { facts, sources });
+  // 用例里写的算子类事实（如 cumulative_amount）是固化值，评测不连数据源，基准不随算子漂移
+  const actual = await decide(loaded, { facts, sources }, { fixtureFacts: facts });
   const narration =
     input.skillType === "model-based"
       ? mockModelNarrate(runtimeId, actual)

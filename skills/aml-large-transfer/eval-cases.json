@@ -8,7 +8,9 @@
       "counterparty_country": "US",
       "customer_risk_level": "R4"
     },
-    "expect": { "decision": "reject" }
+    "expect": {
+      "decision": "reject"
+    }
   },
   {
     "id": "self-domestic-large-low-risk",
@@ -19,7 +21,9 @@
       "counterparty_country": "CN",
       "customer_risk_level": "R1"
     },
-    "expect": { "decision": "allow" }
+    "expect": {
+      "decision": "allow"
+    }
   },
   {
     "id": "self-domestic-cumulative-high-risk",
@@ -30,6 +34,79 @@
       "counterparty_country": "CN",
       "customer_risk_level": "R4"
     },
-    "expect": { "decision": "reject" }
+    "expect": {
+      "decision": "reject"
+    }
+  },
+  {
+    "id": "frozen-c10001-large-cross-border",
+    "title": "真实算子取数：C10001 当日累计未过线，单笔 60 万境外，靠单笔命中",
+    "facts": {
+      "customer_id": "C10001",
+      "trade_date": "2026-09-30",
+      "payment_amount": 600000,
+      "counterparty_country": "US",
+      "customer_risk_level": "R4",
+      "cumulative_amount": 668562.05
+    },
+    "expect": {
+      "decision": "reject",
+      "code": "AML_LARGE_TRANSFER_COMPOSITE"
+    },
+    "frozenFrom": [
+      {
+        "fact": "cumulative_amount",
+        "operator": "op.cumulative_amount@1",
+        "asOf": "2026-09-30",
+        "freshness": "fresh"
+      }
+    ]
+  },
+  {
+    "id": "frozen-c10026-cumulative-only",
+    "title": "真实算子取数：C10026 单笔只有 10 万，当日按客户累计超 200 万且高风险，靠累计命中",
+    "facts": {
+      "customer_id": "C10026",
+      "trade_date": "2026-09-30",
+      "payment_amount": 100000,
+      "counterparty_country": "CN",
+      "customer_risk_level": "R5",
+      "cumulative_amount": 2950068.9
+    },
+    "expect": {
+      "decision": "reject",
+      "code": "AML_LARGE_TRANSFER_COMPOSITE"
+    },
+    "frozenFrom": [
+      {
+        "fact": "cumulative_amount",
+        "operator": "op.cumulative_amount@1",
+        "asOf": "2026-09-30",
+        "freshness": "fresh"
+      }
+    ]
+  },
+  {
+    "id": "frozen-c10001-small-domestic",
+    "title": "真实算子取数：C10001 单笔 8 万境内低风险，累计也未过线，放行",
+    "facts": {
+      "customer_id": "C10001",
+      "trade_date": "2026-09-30",
+      "payment_amount": 80000,
+      "counterparty_country": "CN",
+      "customer_risk_level": "R1",
+      "cumulative_amount": 668562.05
+    },
+    "expect": {
+      "decision": "allow"
+    },
+    "frozenFrom": [
+      {
+        "fact": "cumulative_amount",
+        "operator": "op.cumulative_amount@1",
+        "asOf": "2026-09-30",
+        "freshness": "fresh"
+      }
+    ]
   }
 ]

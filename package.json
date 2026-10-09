@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "eval": "node eval-runner/index.js --all",
     "eval:aml": "node eval-runner/index.js aml-large-transfer",
-    "eval:fund": "node eval-runner/index.js fund-diagnosis"
+    "eval:fund": "node eval-runner/index.js fund-diagnosis",
+    "fixtures:aml": "node eval-runner/freeze-facts.js aml-large-transfer"
   },
   "dependencies": {
     "react": "^18.3.1",
