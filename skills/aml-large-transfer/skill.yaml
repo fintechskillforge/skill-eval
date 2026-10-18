@@ -1,10 +1,10 @@
 meta:
   skillId: aml-large-transfer
-  version: 1.0.2
+  version: 1.0.3
   domain: payment
   capability: 合规
 collab:
-  ruleRef: aml_large_transfer_check@1.0.2
+  ruleRef: aml_large_transfer_check@1.0.3
 eval:
   skillType: rule-based
   baselineRefs:
